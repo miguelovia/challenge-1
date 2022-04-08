@@ -2,7 +2,7 @@
 
 Código fuente de los ejercicios realizados en lenguaje PHP y Python. 
 
-# Notas para python
+# Notas para python y php
 
 1.- Ir a la carpeta test/python/game
 
@@ -13,9 +13,18 @@ Ejecutar el siguiente comando
 python3 -m pip install numpy
 ```
 
-3.- Una vez instalada la dependencia ejecutar el comando:
+3.- Ejecución
+
+Para ejecutar los programas ir a la carpeta raíz de cada uno de los proyectos y pasar el nombre del archivo como tercer argumento en la línea de comandos. 
 
 ```bash
-python3 main.py
+test/php/message php index.php message.txt
 ```
 
+```bash
+test/php/game php index.php scores.txt
+```
+
+```bash
+test/python/game python3 main.py scores.txt
+```

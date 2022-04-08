@@ -1,4 +1,5 @@
 <?php
+
 class Score{
 
     var $player1 = 0;
@@ -8,8 +9,11 @@ class Score{
     var $score = [];
     var $sump1 = 0;
     var $sump2 = 0;
+    var $stream; 
 
-    function __construct($data){
+    function __construct($stream){
+        $this->stream = $stream;
+        $data = $this->stream->readfile();
         if($this->parse($data) && count($this->score)){
 			$this->proccess();
             $this->result();
@@ -69,11 +73,12 @@ class Score{
     }
     
     public function result(){
+        $outFile = "output.txt";
         if($this->sump1 > $this->sump2){
-            echo "1 ".max($this->p1);
+            $this->stream->writeFile($outFile,"1 ".max($this->p1));
         }else{
             if($this->sump1 < $this->sump2){
-                echo "2 ".max($this->p2);
+                $this->stream->writeFile($outFile,"2 ".max($this->p2));
             }else {
                 echo "Por favor revisa la información ingresada ya que no puede haber empate";
             } 

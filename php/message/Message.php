@@ -4,8 +4,11 @@ class Message{
 	var $ins1;
 	var $ins2;
 	var $msg;
+	var $stream; 
 
-	function __construct($data){
+	function __construct($stream){
+		$this->stream = $stream;
+        $data = $this->stream->readfile();
 		if($this->parse($data)){
 			$this->result();
 		}
@@ -67,12 +70,13 @@ class Message{
 
 
 	public function result(){
-		$output = [0 => "SI<br>NO", 1 => "NO<br>SI"];
+		$outFile = "output.txt";
+		$output = [0 => "SI\nNO", 1 => "NO\nSI"];
 		$finded = $this->findInstruction($this->msg,[$this->ins1,$this->ins2]);
 		if($finded === false) 
 			echo "No hay coincidencias";
 		else
-			echo $output[$finded];
+			$this->stream->writeFile($outFile,$output[$finded]);
 	}
 
 }

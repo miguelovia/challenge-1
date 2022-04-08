@@ -1,8 +1,12 @@
 <?php
 require_once("../ReadFile.php");
 require_once("Score.php");
-$filename = "scores.txt";
-$stream = new ReadFile($filename);
-$score = new Score($stream->readfile());
+if($argc == 1){
+    echo "Debes especificar el nombre del archivo";
+    return;
+}
+$stream = new ReadFile($argv);
+$score = new Score($stream);
+
 
 
