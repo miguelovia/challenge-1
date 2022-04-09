@@ -17,9 +17,6 @@ class Score{
         if($this->parse($data) && count($this->score)){
 			$this->proccess();
             $this->result();
-        }else{
-            echo "Error al procesar los datos en el archivo";
-            return;
         }
     }
 
@@ -41,6 +38,15 @@ class Score{
             echo "El número de rondas debe ser menor o igual a 10000";
             return;
         }
+
+        foreach($data as $index=>$ele){
+            foreach(explode(" ",$ele) as $sub){
+                if(!is_numeric($sub)){
+                    echo "Los puntajes de la ronda ".($index+1)." no son correctos";        
+                    return;
+                }
+            }
+        }
         //Get scores
         $data = array_chunk($data,1);
         if(count($data) != $limit){
@@ -52,6 +58,7 @@ class Score{
         foreach ($data as $key => $ele) {
             array_push($this->score, explode(" ",$ele[0]));    
         }
+        
         return true;
     }
 
